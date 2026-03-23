@@ -1,0 +1,12 @@
+node_modules/
+dist/
+coverage/
+.env
+.env.*
+!.env.example
+.vscode/
+.DS_Store
+*.log
+apps/backend/.nestjs-cli.json
+apps/backend/dist/
+apps/frontend/dist/
