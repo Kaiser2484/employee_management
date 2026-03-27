@@ -1,11 +1,7 @@
-﻿const fs = require('fs');
-let code = fs.readFileSync('apps/frontend/src/features/employees/EmployeesPage.tsx', 'utf8');
+const fs = require('fs');
 
-const start = code.indexOf('  function renderOrganizationView() {');
-const end = code.indexOf('  function renderContractView() {');
-
-if (start !== -1 && end !== -1) {
-  const replacement = \  function renderDepartmentsView() {
+const views = \
+  function renderDepartmentsView() {
     return (
       <div className="organization-view">
         <p className="employees-meta">{t('employees.organization.description')}</p>
@@ -26,7 +22,10 @@ if (start !== -1 && end !== -1) {
                 </button>
                 <button
                   className="admin-delete-btn"
-                  onClick={() => deleteDepartment(deleteConfirm.name)}
+                  onClick={() => {
+                    deleteDepartment(deleteConfirm.name);
+                    setDeleteConfirm(null);
+                  }}
                 >
                   {t('employees.organization.delete')}
                 </button>
@@ -126,7 +125,10 @@ if (start !== -1 && end !== -1) {
                 </button>
                 <button
                   className="admin-delete-btn"
-                  onClick={() => deleteTeam(deleteConfirm.name)}
+                  onClick={() => {
+                    deleteTeam(deleteConfirm.name);
+                    setDeleteConfirm(null);
+                  }}
                 >
                   {t('employees.organization.delete')}
                 </button>
@@ -206,6 +208,7 @@ if (start !== -1 && end !== -1) {
   }
 \;
 
-  code = code.substring(0, start) + replacement + code.substring(end);
-  fs.writeFileSync('apps/frontend/src/features/employees/EmployeesPage.tsx', code);
-}
+let code = fs.readFileSync('apps/frontend/src/features/employees/EmployeesPage.tsx', 'utf8');
+code = code.replace('/* VIEWS_PLACEHOLDER */\n\n', views);
+fs.writeFileSync('apps/frontend/src/features/employees/EmployeesPage.tsx', code);
+console.log('Done!');
