@@ -1,0 +1,714 @@
+<!doctype html>
+<html lang="vi">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Employee Management</title>
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@300;400;500;600&family=DM+Serif+Display&display=swap" rel="stylesheet">
+  </head>
+  <body>
+    <aside class="sidebar">
+      <div class="sidebar-logo">
+        <div class="logo-icon">H</div>
+        <div class="logo-text">HRM System <span>Employee Portal</span></div>
+      </div>
+ 
+      <div class="sidebar-profile">
+        <div class="avatar">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+            <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/>
+            <circle cx="12" cy="7" r="4"/>
+          </svg>
+          <div class="avatar-badge">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+              <path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"/>
+              <path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"/>
+            </svg>
+          </div>
+        </div>
+        <div class="profile-name">Admin</div>
+      </div>
+ 
+      <div class="sidebar-search">
+        <div class="search-box">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/>
+          </svg>
+          <input type="text" placeholder="Tìm kiếm...">
+        </div>
+      </div>
+ 
+      <nav class="sidebar-nav">
+        <div class="nav-item">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="m3 9 9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/>
+            <polyline points="9 22 9 12 15 12 15 22"/>
+          </svg>
+          HR Administration
+        </div>
+        <div class="nav-item active">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/>
+            <circle cx="9" cy="7" r="4"/>
+            <path d="M23 21v-2a4 4 0 0 0-3-3.87"/>
+            <path d="M16 3.13a4 4 0 0 1 0 7.75"/>
+          </svg>
+          Employee Management
+        </div>
+        <div class="nav-item">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <line x1="18" y1="20" x2="18" y2="10"/>
+            <line x1="12" y1="20" x2="12" y2="4"/>
+            <line x1="6" y1="20" x2="6" y2="14"/>
+          </svg>
+          Reports & Analytics
+        </div>
+        <div class="nav-item">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <rect x="3" y="4" width="18" height="18" rx="2" ry="2"/>
+            <line x1="16" y1="2" x2="16" y2="6"/>
+            <line x1="8" y1="2" x2="8" y2="6"/>
+            <line x1="3" y1="10" x2="21" y2="10"/>
+          </svg>
+          Leave
+        </div>
+        <div class="nav-item">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <circle cx="12" cy="12" r="10"/>
+            <polyline points="12 6 12 12 16 14"/>
+          </svg>
+          Time Tracking
+        </div>
+        <div class="nav-item">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/>
+            <circle cx="9" cy="7" r="4"/>
+            <polyline points="16 11 18 13 22 9"/>
+          </svg>
+          Attendance
+        </div>
+        <div class="nav-item">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/>
+            <rect x="14" y="14" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/>
+          </svg>
+          Roster
+          <span class="nav-badge new">New</span>
+        </div>
+        <div class="nav-item">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/>
+          </svg>
+          Recruitment (ATS)
+        </div>
+      </nav>
+    </aside>
+ 
+    <!-- MAIN -->
+    <main class="main">
+      <!-- TOPBAR -->
+      <header class="topbar">
+        <div style="display:flex;align-items:center;gap:20px">
+          <span class="topbar-title">Employee Management</span>
+          <nav class="topbar-nav">
+            <a href="#">
+              <svg style="width:14px;height:14px;display:inline;vertical-align:middle;margin-right:4px" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="m3 9 9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/></svg>
+            </a>
+            <a href="#">Employee List</a>
+            <a href="#">Directory</a>
+            <a href="#">Buzz</a>
+            <a href="#">Announcements ▾</a>
+            <a href="#" class="active">Dashboard</a>
+            <div class="dropdown-wrapper">
+              <a href="#" class="more-btn" id="moreBtn" onclick="toggleMore(event)">More ···</a>
+              <div class="dropdown-menu" id="moreDropdown">
+                <div class="dropdown-item"><span class="chevron"></span> Organization Chart</div>
+                <div class="dropdown-item"><span class="chevron"></span> Competencies</div>
+                <div class="dropdown-item"><span class="chevron"></span> Qualifications</div>
+                <div class="dropdown-item"><span class="chevron"></span> Manage Data</div>
+                <div class="dropdown-item"><span class="chevron"></span> Configurations</div>
+                <div class="dropdown-item" style="border:none;padding-bottom:4px">Nationalities</div>
+                <div class="dropdown-item"><span class="chevron"></span> Assets</div>
+                <div class="dropdown-item" style="border:none;padding-bottom:4px">iCalendar Feeds</div>
+                <div class="dropdown-item"><span class="chevron"></span> Discipline</div>
+              </div>
+            </div>
+          </nav>
+        </div>
+        <div class="topbar-right">
+          <button class="topbar-btn">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <circle cx="12" cy="12" r="10"/><path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"/><line x1="12" y1="17" x2="12.01" y2="17"/>
+            </svg>
+          </button>
+          <button class="topbar-btn">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+             <circle cx="12" cy="12" r="3"/><path d="M19.07 4.93a10 10 0 0 1 0 14.14M4.93 4.93a10 10 0 0 0 0 14.14"/>
+            </svg>
+          </button>
+          <button class="logout-btn">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"/>
+              <polyline points="16 17 21 12 16 7"/><line x1="21" y1="12" x2="9" y2="12"/>
+            </svg>
+            Log Out
+          </button>
+        </div>
+      </header>
+ 
+      <!-- CONTENT -->
+      <div class="content">
+ 
+        <!-- STATS -->
+        <div class="stats-row">
+          <div class="stat-card">
+            <div class="stat-icon orange">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/>
+                <circle cx="9" cy="7" r="4"/>
+                <path d="M23 21v-2a4 4 0 0 0-3-3.87"/>
+                <path d="M16 3.13a4 4 0 0 1 0 7.75"/>
+              </svg>
+            </div>
+            <div class="stat-info">
+              <div class="stat-value">248</div>
+              <div class="stat-label">Tổng nhân viên</div>
+            </div>
+          </div>
+          <div class="stat-card">
+            <div class="stat-icon green">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <polyline points="9 11 12 14 22 4"/>
+                <path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11"/>
+              </svg>
+            </div>
+            <div class="stat-info">
+              <div class="stat-value">231</div>
+              <div class="stat-label">Đang làm việc</div>
+            </div>
+          </div>
+          <div class="stat-card">
+            <div class="stat-icon blue">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <rect x="3" y="4" width="18" height="18" rx="2" ry="2"/>
+                <line x1="16" y1="2" x2="16" y2="6"/>
+                <line x1="8" y1="2" x2="8" y2="6"/>
+                <line x1="3" y1="10" x2="21" y2="10"/>
+              </svg>
+            </div>
+            <div class="stat-info">
+              <div class="stat-value">12</div>
+              <div class="stat-label">Nghỉ phép hôm nay</div>
+            </div>
+          </div>
+          <div class="stat-card">
+            <div class="stat-icon purple">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/>
+                <polyline points="14 2 14 8 20 8"/>
+              </svg>
+            </div>
+            <div class="stat-info">
+              <div class="stat-value">5</div>
+              <div class="stat-label">Đơn chờ duyệt</div>
+            </div>
+          </div>
+        </div>
+ 
+        <!-- CARDS GRID -->
+        <div class="dashboard-grid">
+ 
+          <!-- MY ACTIONS -->
+          <div class="card">
+            <div class="card-header">
+              <div class="card-title">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <path d="M9 11l3 3L22 4"/><path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11"/>
+                </svg>
+                My Actions
+              </div>
+              <button class="card-settings">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <circle cx="12" cy="12" r="3"/>
+                  <path d="M19.07 4.93a10 10 0 0 1 0 14.14M4.93 19.07a10 10 0 0 1 0-14.14"/>
+                </svg>
+              </button>
+            </div>
+            <div class="card-body">
+              <div class="empty-state">
+                <div class="empty-icon">
+                  <div class="clipboard">
+                    <div class="clipboard-line"></div>
+                    <div class="clipboard-line"></div>
+                    <div class="clipboard-line short"></div>
+                  </div>
+                </div>
+                <p>No Pending Actions to Perform</p>
+              </div>
+            </div>
+          </div>
+ 
+          <!-- QUICK ACCESS -->
+          <div class="card">
+            <div class="card-header">
+              <div class="card-title">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/>
+                </svg>
+                Quick Access
+              </div>
+              <button class="card-settings">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <circle cx="12" cy="12" r="3"/>
+                  <path d="M19.07 4.93a10 10 0 0 1 0 14.14M4.93 19.07a10 10 0 0 1 0-14.14"/>
+                </svg>
+              </button>
+            </div>
+            <div class="card-body">
+              <div class="quick-access-grid">
+                <div class="quick-item">
+                  <div class="quick-item-icon">📋</div>
+                  <span>General Request</span>
+                </div>
+                <div class="quick-item">
+                  <div class="quick-item-icon">🔍</div>
+                  <span>Hiring Requisition</span>
+                </div>
+                <div class="quick-item">
+                  <div class="quick-item-icon">📅</div>
+                  <span>Leave Request</span>
+                </div>
+                <div class="quick-item">
+                  <div class="quick-item-icon">⏱️</div>
+                  <span>Time Sheet</span>
+                </div>
+                <div class="quick-item">
+                  <div class="quick-item-icon">💰</div>
+                  <span>Payroll</span>
+                </div>
+                <div class="quick-item">
+                  <div class="quick-item-icon">📊</div>
+                  <span>Reports</span>
+                </div>
+              </div>
+            </div>
+          </div>
+ 
+          <!-- EMPLOYEES ON LEAVE -->
+          <div class="card">
+            <div class="card-header">
+              <div class="card-title">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <rect x="3" y="4" width="18" height="18" rx="2"/>
+                  <line x1="16" y1="2" x2="16" y2="6"/>
+                  <line x1="8" y1="2" x2="8" y2="6"/>
+                  <line x1="3" y1="10" x2="21" y2="10"/>
+                </svg>
+                Employees on Leave Today
+              </div>
+              <button class="card-settings">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <circle cx="12" cy="12" r="3"/>
+                  <path d="M19.07 4.93a10 10 0 0 1 0 14.14M4.93 19.07a10 10 0 0 1 0-14.14"/>
+                </svg>
+              </button>
+            </div>
+            <div class="card-body">
+              <div class="leave-empty">
+                <div class="empty-icon">
+                  <div class="clipboard">
+                    <div class="clipboard-line"></div>
+                    <div class="clipboard-line"></div>
+                    <div class="clipboard-line short"></div>
+                  </div>
+                </div>
+                <p>Leave Period Not Defined</p>
+              </div>
+            </div>
+          </div>
+ 
+          <!-- TIME AT WORK -->
+          <div class="card">
+            <div class="card-header">
+              <div class="card-title">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <circle cx="12" cy="12" r="10"/>
+                  <polyline points="12 6 12 12 16 14"/>
+                </svg>
+                Time At Work
+              </div>
+              <button class="card-settings">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <circle cx="12" cy="12" r="3"/>
+                  <path d="M19.07 4.93a10 10 0 0 1 0 14.14M4.93 19.07a10 10 0 0 1 0-14.14"/>
+                </svg>
+              </button>
+            </div>
+            <div class="card-body">
+              <div class="time-grid">
+                <div class="time-item">
+                  <div class="time-value">08:32</div>
+                  <div class="time-label">Giờ vào làm</div>
+                </div>
+                <div class="time-item">
+                  <div class="time-value">5:48</div>
+                  <div class="time-label">Thời gian làm</div>
+                </div>
+                <div class="time-item">
+                  <div class="time-value">17:30</div>
+                  <div class="time-label">Giờ tan làm</div>
+                </div>
+                <div class="time-item">
+                  <div class="time-value" style="color:var(--green)">Đúng giờ</div>
+                  <div class="time-label">Trạng thái</div>
+                </div>
+              </div>
+            </div>
+          </div>
+ 
+          <!-- LATEST NEWS -->
+          <div class="card">
+            <div class="card-header">
+              <div class="card-title">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <path d="M4 22h16a2 2 0 0 0 2-2V4a2 2 0 0 0-2-2H8a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2z"/>
+                  <path d="M16 2v20"/>
+                </svg>
+                Latest News
+              </div>
+              <button class="card-settings">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <circle cx="12" cy="12" r="3"/>
+                  <path d="M19.07 4.93a10 10 0 0 1 0 14.14M4.93 19.07a10 10 0 0 1 0-14.14"/>
+                </svg>
+              </button>
+            </div>
+            <div class="card-body">
+              <div class="news-list">
+                <div class="news-item">
+                  <div class="news-dot"></div>
+                  <div class="news-content">
+                    <div class="news-title">Chính sách nghỉ phép năm 2026 đã được cập nhật</div>
+                    <div class="news-date">27 tháng 3, 2026</div>
+                  </div>
+                </div>
+                <div class="news-item">
+                  <div class="news-dot" style="background:var(--blue)"></div>
+                  <div class="news-content">
+                    <div class="news-title">Lịch họp toàn công ty tháng 4</div>
+                    <div class="news-date">25 tháng 3, 2026</div>
+                  </div>
+                </div>
+                <div class="news-item">
+                  <div class="news-dot" style="background:var(--green)"></div>
+                  <div class="news-content">
+                    <div class="news-title">Chương trình đào tạo kỹ năng mềm Q2</div>
+                    <div class="news-date">20 tháng 3, 2026</div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+ 
+          <!-- LATEST DOCUMENTS -->
+          <div class="card">
+            <div class="card-header">
+              <div class="card-title">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/>
+                  <polyline points="14 2 14 8 20 8"/>
+                  <line x1="16" y1="13" x2="8" y2="13"/>
+                  <line x1="16" y1="17" x2="8" y2="17"/>
+                </svg>
+                Latest Documents
+              </div>
+              <button class="card-settings">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <circle cx="12" cy="12" r="3"/>
+                  <path d="M19.07 4.93a10 10 0 0 1 0 14.14M4.93 19.07a10 10 0 0 1 0-14.14"/>
+                </svg>
+              </button>
+            </div>
+            <div class="card-body">
+              <div class="doc-list">
+                <div class="doc-item">
+                  <div class="doc-icon pdf">📄</div>
+                  <div>
+                    <div class="doc-name">Hợp đồng lao động 2026.pdf</div>
+                    <div class="doc-date">27 tháng 3, 2026</div>
+                  </div>
+                </div>
+                <div class="doc-item">
+                  <div class="doc-icon xls">📊</div>
+                  <div>
+                    <div class="doc-name">Bảng lương tháng 3.xlsx</div>
+                    <div class="doc-date">25 tháng 3, 2026</div>
+                  </div>
+                </div>
+                <div class="doc-item">
+                  <div class="doc-icon doc">📝</div>
+                  <div>
+                    <div class="doc-name">Quy chế nội bộ công ty.docx</div>
+                    <div class="doc-date">20 tháng 3, 2026</div>
+                  </div>
+                </div>
+              </div>
+            </div>
+        </div>
+ 
+        </div>
+        <!-- CHART WIDGETS ROW 1: Performance + Leave by Dept (2 col each) -->
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-top:16px">
+ 
+          <!-- PERFORMANCE QUICK FEEDBACK -->
+          <div class="card">
+            <div class="card-header">
+              <div class="card-title">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="width:15px;height:15px;color:var(--orange)">
+                  <path d="M12 2a10 10 0 1 0 10 10"/><path d="M12 6v6l4 2"/><circle cx="18" cy="6" r="4" fill="var(--orange)" stroke="none"/>
+                </svg>
+                Performance Quick Feedback
+              </div>
+              <button class="card-settings">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="3"/><path d="M19.07 4.93a10 10 0 0 1 0 14.14M4.93 19.07a10 10 0 0 1 0-14.14"/></svg>
+              </button>
+            </div>
+            <div class="card-body">
+              <div class="chart-empty-state">
+                <div class="chart-monitor-wrap">
+                  <span class="float-dot" style="top:0;left:10px"></span>
+                  <span class="float-dot" style="top:20px;right:5px;background:#f96d00;opacity:0.3"></span>
+                  <span class="float-dot" style="bottom:5px;left:5px;background:#3b82f6;opacity:0.3"></span>
+                  <div class="chart-monitor">
+                    <div class="monitor-screen">
+                      <svg class="mini-chart" viewBox="0 0 90 58" fill="none">
+                        <polyline points="5,48 20,35 35,40 50,22 65,28 80,12" stroke="#f96d00" stroke-width="2" fill="none" opacity="0.5"/>
+                        <rect x="10" y="38" width="8" height="12" fill="#93c5fd" opacity="0.5" rx="1"/>
+                        <rect x="25" y="30" width="8" height="20" fill="#6ee7b7" opacity="0.5" rx="1"/>
+                        <rect x="40" y="35" width="8" height="15" fill="#fca5a5" opacity="0.5" rx="1"/>
+                        <rect x="55" y="20" width="8" height="30" fill="#93c5fd" opacity="0.5" rx="1"/>
+                        <rect x="70" y="25" width="8" height="25" fill="#6ee7b7" opacity="0.5" rx="1"/>
+                      </svg>
+                    </div>
+                    <div class="monitor-stand"></div>
+                    <div class="monitor-base"></div>
+                  </div>
+                </div>
+                <p class="chart-empty-label">No Available Trackers</p>
+              </div>
+            </div>
+          </div>
+ 
+          <!-- CURRENT YEAR LEAVE BY DEPT -->
+          <div class="card">
+            <div class="card-header">
+              <div class="card-title">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="width:15px;height:15px;color:var(--orange)">
+                  <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/>
+                  <path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/>
+                </svg>
+                Current Year's Leave Taken by Department
+              </div>
+              <button class="card-settings">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="3"/><path d="M19.07 4.93a10 10 0 0 1 0 14.14M4.93 19.07a10 10 0 0 1 0-14.14"/></svg>
+              </button>
+            </div>
+            <div class="card-body">
+              <div class="chart-area">
+                <div class="chart-canvas-wrap">
+                  <canvas id="leaveByDeptChart"></canvas>
+                </div>
+              </div>
+            </div>
+          </div>
+ 
+        </div>
+ 
+        <!-- CHART WIDGETS ROW 2: Leave by Month (full width) -->
+        <div style="margin-top:16px">
+          <div class="card">
+            <div class="card-header">
+              <div class="card-title">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="width:15px;height:15px;color:var(--orange)">
+                  <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/>
+                  <path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/>
+                </svg>
+                Leave Taken on Each Calendar Month Over the Years
+              </div>
+              <button class="card-settings">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="3"/><path d="M19.07 4.93a10 10 0 0 1 0 14.14M4.93 19.07a10 10 0 0 1 0-14.14"/></svg>
+              </button>
+            </div>
+            <div class="card-body">
+              <div class="chart-area">
+                <div class="chart-canvas-wrap" style="height:220px">
+                  <canvas id="leaveByMonthChart"></canvas>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+ 
+        <!-- CHART WIDGETS ROW 3: Leave Scheduled + Leave by Day of Week -->
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-top:16px">
+ 
+          <!-- LEAVE SCHEDULED IN EACH MONTH -->
+          <div class="card">
+            <div class="card-header">
+              <div class="card-title">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="width:15px;height:15px;color:var(--orange)">
+                  <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/>
+                  <path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/>
+                </svg>
+                Leave Scheduled in Each Month
+              </div>
+              <button class="card-settings">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="3"/><path d="M19.07 4.93a10 10 0 0 1 0 14.14M4.93 19.07a10 10 0 0 1 0-14.14"/></svg>
+              </button>
+            </div>
+            <div class="card-body">
+              <div class="chart-area">
+                <div class="chart-canvas-wrap">
+                  <canvas id="leaveScheduledChart"></canvas>
+                </div>
+              </div>
+            </div>
+          </div>
+ 
+          <!-- LEAVE TAKEN EACH DAY OF WEEK -->
+          <div class="card">
+            <div class="card-header">
+              <div class="card-title">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="width:15px;height:15px;color:var(--orange)">
+                  <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/>
+                  <path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/>
+                </svg>
+                Leave Taken on Each Day of the Week Over Time
+              </div>
+              <button class="card-settings">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="3"/><path d="M19.07 4.93a10 10 0 0 1 0 14.14M4.93 19.07a10 10 0 0 1 0-14.14"/></svg>
+              </button>
+            </div>
+            <div class="card-body">
+              <div class="chart-area">
+                <div class="chart-canvas-wrap">
+                  <canvas id="leaveByDayChart"></canvas>
+                </div>
+              </div>
+            </div>
+          </div>
+ 
+        </div>
+        
+      </div>
+    </main>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.min.js"></script>
+    <script>
+      function toggleMore(e) {
+        e.preventDefault();
+        e.stopPropagation();
+        const menu = document.getElementById('moreDropdown');
+        const btn  = document.getElementById('moreBtn');
+        const isOpen = menu.classList.toggle('open');
+        btn.classList.toggle('active-dropdown', isOpen);
+      }
+      document.addEventListener('click', function() {
+        document.getElementById('moreDropdown').classList.remove('open');
+        document.getElementById('moreBtn').classList.remove('active-dropdown');
+      });
+ 
+      const months = ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
+      const orange = '#f96d00', blue = '#3b82f6', green = '#10b981', purple = '#8b5cf6', red = '#ef4444';
+ 
+      Chart.defaults.font.family = "'DM Sans', sans-serif";
+      Chart.defaults.font.size = 12;
+      Chart.defaults.color = '#6b7280';
+ 
+      const gridOpts = { color: '#f3f4f6', drawBorder: false };
+      const tickOpts = { color: '#9ca3af' };
+ 
+      // 1. Leave by Department (Bar)
+      new Chart(document.getElementById('leaveByDeptChart'), {
+        type: 'bar',
+        data: {
+          labels: ['Engineering','Marketing','HR','Finance','Sales','Design'],
+          datasets: [
+            { label: 'Annual Leave', data: [12,8,5,9,14,6], backgroundColor: orange+'cc', borderRadius: 4 },
+            { label: 'Sick Leave',   data: [5,3,2,4,6,3],  backgroundColor: blue+'cc',   borderRadius: 4 },
+            { label: 'Other',        data: [2,1,1,2,3,1],  backgroundColor: green+'cc',  borderRadius: 4 },
+          ]
+        },
+        options: {
+          responsive: true, maintainAspectRatio: false,
+          plugins: { legend: { position: 'top', labels: { boxWidth: 12, padding: 12 } } },
+          scales: {
+            x: { grid: gridOpts, ticks: tickOpts },
+            y: { grid: gridOpts, ticks: tickOpts, beginAtZero: true }
+          }
+        }
+      });
+ 
+      // 2. Leave by Month Over Years (Line)
+      new Chart(document.getElementById('leaveByMonthChart'), {
+        type: 'line',
+        data: {
+          labels: months,
+          datasets: [
+            { label: '2024', data: [4,3,6,8,5,7,9,6,5,4,3,5], borderColor: orange, backgroundColor: orange+'22', tension: 0.4, fill: true, pointRadius: 3 },
+            { label: '2025', data: [5,4,7,9,6,8,10,7,6,5,4,6], borderColor: blue, backgroundColor: blue+'22', tension: 0.4, fill: true, pointRadius: 3 },
+            { label: '2026', data: [6,5,8,null,null,null,null,null,null,null,null,null], borderColor: green, backgroundColor: green+'22', tension: 0.4, fill: true, pointRadius: 3 },
+          ]
+        },
+        options: {
+          responsive: true, maintainAspectRatio: false,
+          plugins: { legend: { position: 'top', labels: { boxWidth: 12, padding: 12 } } },
+          scales: {
+            x: { grid: gridOpts, ticks: tickOpts },
+            y: { grid: gridOpts, ticks: tickOpts, beginAtZero: true }
+          }
+        }
+      });
+ 
+      // 3. Leave Scheduled per Month (Bar)
+      new Chart(document.getElementById('leaveScheduledChart'), {
+        type: 'bar',
+        data: {
+          labels: months,
+          datasets: [
+            { label: 'Scheduled', data: [3,2,5,7,4,6,8,5,4,3,2,4], backgroundColor: purple+'cc', borderRadius: 4 },
+            { label: 'Taken',     data: [2,2,4,6,3,5,7,4,3,2,1,3], backgroundColor: orange+'99', borderRadius: 4 },
+          ]
+        },
+        options: {
+          responsive: true, maintainAspectRatio: false,
+          plugins: { legend: { position: 'top', labels: { boxWidth: 12, padding: 12 } } },
+          scales: {
+            x: { grid: gridOpts, ticks: tickOpts },
+            y: { grid: gridOpts, ticks: tickOpts, beginAtZero: true }
+          }
+        }
+      });
+ 
+      // 4. Leave by Day of Week (Bar)
+      new Chart(document.getElementById('leaveByDayChart'), {
+        type: 'bar',
+        data: {
+          labels: ['Monday','Tuesday','Wednesday','Thursday','Friday'],
+          datasets: [
+            { label: '2024', data: [18,12,10,14,22], backgroundColor: blue+'cc',   borderRadius: 4 },
+            { label: '2025', data: [20,14,11,16,25], backgroundColor: orange+'cc', borderRadius: 4 },
+            { label: '2026', data: [8,5,4,6,10],     backgroundColor: green+'cc',  borderRadius: 4 },
+          ]
+        },
+        options: {
+          responsive: true, maintainAspectRatio: false,
+          plugins: { legend: { position: 'top', labels: { boxWidth: 12, padding: 12 } } },
+          scales: {
+            x: { grid: gridOpts, ticks: tickOpts },
+            y: { grid: gridOpts, ticks: tickOpts, beginAtZero: true }
+          }
+        }
+      });
+    </script>
+  </body>
+</html>
