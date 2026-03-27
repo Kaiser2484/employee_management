@@ -843,3 +843,48 @@ tbody tr:hover {
   }
 }
 
+.delete-confirm-modal {
+  background-color: var(--surface);
+  padding: 1.5rem;
+  border-radius: 8px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
+  max-width: 500px;
+  width: 100%;
+  z-index: 1000;
+}
+
+.sticky-pagination {
+  position: sticky;
+  bottom: 0;
+  background-color: var(--surface);
+  z-index: 100;
+  padding-top: 10px;
+  padding-bottom: 10px;
+  border-top: 1px solid var(--line);
+  display: flex !important;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.pagination-page-size {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 0.9rem;
+  color: var(--ink-soft);
+}
+
+.page-size-select {
+  padding: 0.25rem 0.5rem;
+  border: 1px solid var(--line);
+  border-radius: 4px;
+  background-color: var(--surface);
+  color: var(--ink);
+  font-size: 0.9rem;
+}
+
+.pagination-controls {
+  display: flex;
+  gap: 1rem;
+  align-items: center;
+}

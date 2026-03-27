@@ -38,6 +38,7 @@ export const en = {
   common: {
     loading: 'Loading data...',
     loadError: 'Unable to load data. Please check backend and access scope.',
+    close: 'Close',
   },
   nav: {
     employees: 'Employees',
@@ -53,6 +54,8 @@ export const en = {
     },
     employees: {
       profile: 'Employee Profiles',
+      departments: 'Departments',
+      teams: 'Teams',
       organization: 'Department Structure',
       contract: 'Employment Contracts',
       performance: 'Performance Review',
@@ -86,10 +89,14 @@ export const en = {
       description: 'Manage department and team catalogs for a consistent organization structure.',
       departments: 'Department List',
       teams: 'Team List',
+      department: 'Department',
+      team: 'Team',
       departmentPlaceholder: 'Enter new department',
       teamPlaceholder: 'Enter new team',
+      unassigned: 'Unassigned',
       addDepartment: 'Add department',
       addTeam: 'Add team',
+      members: '{{count}} members',
       addedDepartment: 'Department added successfully.',
       addedTeam: 'Team added successfully.',
       duplicateDepartment: 'Department already exists.',
@@ -118,6 +125,7 @@ export const en = {
     create: {
       title: 'Add New Employee',
       openModal: 'Add Employee',
+      open: 'Add employee',
       cancel: 'Close',
       selectPlaceholder: 'Select',
       sections: {
@@ -183,6 +191,7 @@ export const en = {
     prevPage: 'Previous',
     nextPage: 'Next',
     pageLabel: 'Page {{current}} / {{total}}',
+    pageSizeLabel: 'Rows per page',
     nextActions: 'Next actions',
     action1: 'Build employee listing with search and pagination.',
     action2: 'Add validated create/edit employee form.',

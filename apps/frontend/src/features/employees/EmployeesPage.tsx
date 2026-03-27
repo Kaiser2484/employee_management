@@ -6,11 +6,10 @@ import { useActor } from '../../app/actor-context';
 import { NotificationToast } from '../../components/NotificationToast';
 import { Plus } from 'lucide-react';
 
-const PAGE_SIZE = 6;
 const ROLE_OPTIONS: CreateEmployeePayload['role'][] = ['employee', 'team_lead', 'manager', 'hr', 'admin'];
 const ADMIN_CATALOGS_STORAGE_KEY = 'hrm_admin_catalogs';
-type EmployeeView = 'profile' | 'organization' | 'contract' | 'performance';
-const VALID_EMPLOYEE_VIEWS: EmployeeView[] = ['profile', 'organization', 'contract', 'performance'];
+type EmployeeView = 'profile' | 'departments' | 'teams' | 'organization' | 'contract' | 'performance';
+const VALID_EMPLOYEE_VIEWS: EmployeeView[] = ['profile', 'departments', 'teams', 'organization', 'contract', 'performance'];
 
 type AdminCatalogs = {
   'job-title': string[];
@@ -101,6 +100,7 @@ export function EmployeesPage() {
   const [items, setItems] = useState<EmployeeItem[]>([]);
   const [query, setQuery] = useState('');
   const [roleFilter, setRoleFilter] = useState('all');
+  const [pageSize, setPageSize] = useState(50);
   const [page, setPage] = useState(1);
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
@@ -113,6 +113,8 @@ export function EmployeesPage() {
   const [newTeam, setNewTeam] = useState('');
   const [manualDepartments, setManualDepartments] = useState<string[]>([]);
   const [manualTeams, setManualTeams] = useState<string[]>([]);
+  const [selectedDeptDetails, setSelectedDeptDetails] = useState<string | null>(null);
+  const [selectedTeamDetails, setSelectedTeamDetails] = useState<string | null>(null);
 
   const currentView = useMemo(() => parseEmployeeView(searchParams.get('view')), [searchParams]);
 
@@ -172,10 +174,10 @@ export function EmployeesPage() {
 
     return matchRole && matchQuery;
   });
-  const totalPages = Math.max(1, Math.ceil(filteredItems.length / PAGE_SIZE));
+  const totalPages = Math.max(1, Math.ceil(filteredItems.length / pageSize));
   const safePage = Math.min(page, totalPages);
-  const pageStart = (safePage - 1) * PAGE_SIZE;
-  const pageEnd = pageStart + PAGE_SIZE;
+  const pageStart = (safePage - 1) * pageSize;
+  const pageEnd = pageStart + pageSize;
   const pagedItems = filteredItems.slice(pageStart, pageEnd);
 
   const departments = useMemo(() => {
@@ -187,6 +189,24 @@ export function EmployeesPage() {
     const derived = items.map((item) => item.teamId).filter(Boolean) as string[];
     return [...new Set([...manualTeams, ...derived])];
   }, [items, manualTeams]);
+
+  const departmentCards = useMemo(() => {
+    const hasUnassigned = items.some((item) => !item.departmentId);
+    const list = [...departments];
+    if (hasUnassigned) {
+      list.push('Unassigned');
+    }
+    return [...new Set(list)];
+  }, [departments, items]);
+
+  const teamCards = useMemo(() => {
+    const hasUnassigned = items.some((item) => !item.teamId);
+    const list = [...teams];
+    if (hasUnassigned) {
+      list.push('Unassigned');
+    }
+    return [...new Set(list)];
+  }, [teams, items]);
 
   const contractRows = useMemo(() => {
     const contractTypes = ['Full-time', 'Part-time', 'Freelance', 'Contractor'];
@@ -686,7 +706,7 @@ export function EmployeesPage() {
             <span>{t('employees.roleFilterLabel')}</span>
             <select
               id="employee-role-filter"
-              className="actor-select"
+              className="input-control"
               value={roleFilter}
               onChange={(event) => setRoleFilter(event.target.value)}
             >
@@ -744,8 +764,27 @@ export function EmployeesPage() {
           </div>
         )}
 
-        {!isLoading && !error && totalPages > 1 && (
-          <div className="pagination-row">
+        {!isLoading && !error && filteredItems.length > 0 && (
+          <div className="pagination-row sticky-pagination">
+            <div className="pagination-page-size">
+              <span>{t('employees.pageSizeLabel')}</span>
+              <select
+                className="page-size-select"
+                value={pageSize}
+                onChange={(event) => {
+                  const nextSize = Number(event.target.value);
+                  setPageSize(nextSize);
+                  setPage(1);
+                }}
+              >
+                {[50, 100, 200].map((size) => (
+                  <option key={size} value={size}>
+                    {size}
+                  </option>
+                ))}
+              </select>
+            </div>
+            <div className="pagination-controls">
             <button
               className="mini-btn"
               onClick={() => setPage((current) => Math.max(1, current - 1))}
@@ -766,8 +805,95 @@ export function EmployeesPage() {
             >
               {t('employees.nextPage')}
             </button>
+            </div>
           </div>
         )}
+      </>
+    );
+  }
+
+  function renderDepartmentsView() {
+    return (
+      <>
+        <p className="employees-meta">{t('employees.organization.description')}</p>
+        <div className="org-add-panels">
+          <div className="org-add-panel">
+            <input
+              className="input-control"
+              value={newDepartment}
+              onChange={(event) => setNewDepartment(event.target.value)}
+              placeholder={t('employees.organization.departmentPlaceholder')}
+            />
+            <button className="mini-btn" type="button" onClick={addDepartment}>
+              {t('employees.organization.addDepartment')}
+            </button>
+          </div>
+        </div>
+        <div className="org-teams-list">
+          {departmentCards.map((dept) => {
+            const members = items.filter((member) => (member.departmentId ?? 'Unassigned') === dept);
+            return (
+              <div
+                key={dept}
+                className="org-team-card clickable-card"
+                onClick={() => setSelectedDeptDetails(dept)}
+              >
+                <div className="org-team-content">
+                  <div className="org-team-info">
+                    <h4 className="org-team-name">
+                      {dept === 'Unassigned' ? t('employees.organization.unassigned') ?? 'Unassigned' : dept}
+                    </h4>
+                    <span className="org-team-count">{t('employees.organization.members', { count: members.length }) ?? 'members'}</span>
+                  </div>
+                  <span className="org-team-icon">🏢</span>
+                </div>
+              </div>
+            );
+          })}
+          {!departmentCards.length && <p>{t('employees.noResult')}</p>}
+        </div>
+      </>
+    );
+  }
+
+  function renderTeamsView() {
+    return (
+      <>
+        <p className="employees-meta">{t('employees.organization.description')}</p>
+        <div className="org-add-panels">
+          <div className="org-add-panel">
+            <input
+              className="input-control"
+              value={newTeam}
+              onChange={(event) => setNewTeam(event.target.value)}
+              placeholder={t('employees.organization.teamPlaceholder')}
+            />
+            <button className="mini-btn" type="button" onClick={addTeam}>
+              {t('employees.organization.addTeam')}
+            </button>
+          </div>
+        </div>
+        <div className="org-teams-list">
+          {teamCards.map((team) => {
+            const members = items.filter((member) => (member.teamId ?? 'Unassigned') === team);
+            return (
+              <div
+                key={team}
+                className="org-team-card clickable-card"
+                onClick={() => setSelectedTeamDetails(team)}
+              >
+                <div className="org-team-content">
+                  <div className="org-team-info">
+                    <h4 className="org-team-name">{team === 'Unassigned' ? t('employees.organization.unassigned') ?? 'Unassigned' : team}</h4>
+                    <span className="org-team-count">{t('employees.organization.members', { count: members.length }) ?? 'members'}</span>
+                  </div>
+                  <span className="org-team-icon">👥</span>
+                </div>
+              </div>
+            );
+          })}
+          {!teamCards.length && <p>{t('employees.noResult')}</p>}
+        </div>
       </>
     );
   }
@@ -905,9 +1031,69 @@ export function EmployeesPage() {
         <h2>{t('employees.title')}</h2>
         <p>{t('employees.description')}</p>
         {currentView === 'profile' && renderProfileView()}
+        {currentView === 'departments' && renderDepartmentsView()}
+        {currentView === 'teams' && renderTeamsView()}
         {currentView === 'organization' && renderOrganizationView()}
         {currentView === 'contract' && renderContractView()}
         {currentView === 'performance' && renderPerformanceView()}
+
+        {selectedDeptDetails && (
+          <div className="employee-modal-backdrop" onClick={() => setSelectedDeptDetails(null)}>
+            <div className="delete-confirm-modal members-modal" onClick={(e) => e.stopPropagation()}>
+              <h3>
+                {t('employees.organization.department')}:&nbsp;
+                {selectedDeptDetails === 'Unassigned'
+                  ? t('employees.organization.unassigned') ?? 'Unassigned'
+                  : selectedDeptDetails}
+              </h3>
+              <div className="members-list">
+                {items
+                  .filter((i) => (i.departmentId ?? 'Unassigned') === selectedDeptDetails)
+                  .map((member) => (
+                    <div key={member.id} className="member-item">
+                      <span className="member-name">{member.fullName}</span>
+                      <span className={`role-pill role-${member.role.replace('_', '-')}`}>{member.role}</span>
+                    </div>
+                  ))}
+                {!items.some((i) => (i.departmentId ?? 'Unassigned') === selectedDeptDetails) && (
+                  <span className="member-name">{t('employees.noResult')}</span>
+                )}
+              </div>
+              <button className="mini-btn" onClick={() => setSelectedDeptDetails(null)}>
+                {t('common.close') ?? 'Close'}
+              </button>
+            </div>
+          </div>
+        )}
+
+        {selectedTeamDetails && (
+          <div className="employee-modal-backdrop" onClick={() => setSelectedTeamDetails(null)}>
+            <div className="delete-confirm-modal members-modal" onClick={(e) => e.stopPropagation()}>
+              <h3>
+                {t('employees.organization.team')}:&nbsp;
+                {selectedTeamDetails === 'Unassigned'
+                  ? t('employees.organization.unassigned') ?? 'Unassigned'
+                  : selectedTeamDetails}
+              </h3>
+              <div className="members-list">
+                {items
+                  .filter((i) => (i.teamId ?? 'Unassigned') === selectedTeamDetails)
+                  .map((member) => (
+                    <div key={member.id} className="member-item">
+                      <span className="member-name">{member.fullName}</span>
+                      <span className={`role-pill role-${member.role.replace('_', '-')}`}>{member.role}</span>
+                    </div>
+                  ))}
+                {!items.some((i) => (i.teamId ?? 'Unassigned') === selectedTeamDetails) && (
+                  <span className="member-name">{t('employees.noResult')}</span>
+                )}
+              </div>
+              <button className="mini-btn" onClick={() => setSelectedTeamDetails(null)}>
+                {t('common.close') ?? 'Close'}
+              </button>
+            </div>
+          </div>
+        )}
       </article>
     </section>
   );

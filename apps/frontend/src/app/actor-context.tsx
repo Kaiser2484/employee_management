@@ -1,4 +1,4 @@
-import { createContext, ReactNode, useContext, useMemo, useState } from 'react';
+import { createContext, ReactNode, useContext, useCallback, useMemo, useState } from 'react';
 import { Actor } from './actors';
 
 interface ActorContextValue {
@@ -25,23 +25,22 @@ export function ActorProvider({ children }: { children: ReactNode }) {
     }
   });
 
-  const value = useMemo<ActorContextValue>(() => {
-    function setActor(nextActor: Actor) {
-      localStorage.setItem(ACTOR_STORAGE_KEY, JSON.stringify(nextActor));
-      setActorState(nextActor);
-    }
+  const setActor = useCallback((nextActor: Actor) => {
+    localStorage.setItem(ACTOR_STORAGE_KEY, JSON.stringify(nextActor));
+    setActorState(nextActor);
+  }, []);
 
-    function logout() {
-      localStorage.removeItem(ACTOR_STORAGE_KEY);
-      setActorState(null);
-    }
+  const logout = useCallback(() => {
+    localStorage.removeItem(ACTOR_STORAGE_KEY);
+    setActorState(null);
+    window.location.href = '/login';
+  }, []);
 
-    return {
-      actor,
-      setActor,
-      logout,
-    };
-  }, [actor]);
+  const value = useMemo<ActorContextValue>(() => ({
+    actor,
+    setActor,
+    logout,
+  }), [actor, setActor, logout]);
 
   return <ActorContext.Provider value={value}>{children}</ActorContext.Provider>;
 }

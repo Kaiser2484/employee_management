@@ -7,7 +7,6 @@ import { LeavePage } from './features/leave/LeavePage';
 import { RecruitmentPage } from './features/recruitment/RecruitmentPage';
 import { AdministrationPage } from './features/administration/AdministrationPage';
 import { LoginPage } from './features/auth/LoginPage';
-import { RegisterPage } from './features/auth/RegisterPage';
 import { AccessDeniedPage } from './features/auth/AccessDeniedPage';
 import { useActor } from './app/actor-context';
 import {
@@ -67,7 +66,6 @@ function App() {
     return (
       <Routes>
         <Route path="/login" element={<LoginPage />} />
-        <Route path="/register" element={<RegisterPage />} />
         <Route path="*" element={<Navigate to="/login" replace />} />
       </Routes>
     );
@@ -87,7 +85,8 @@ function App() {
     const map: Record<string, Array<{ label: string; path: string }>> = {
       employees: [
         { label: t('subMenu.employees.profile'), path: '/employees?view=profile' },
-        { label: t('subMenu.employees.organization'), path: '/employees?view=organization' },
+        { label: t('subMenu.employees.departments'), path: '/employees?view=departments' },
+        { label: t('subMenu.employees.teams'), path: '/employees?view=teams' },
         { label: t('subMenu.employees.contract'), path: '/employees?view=contract' },
         { label: t('subMenu.employees.performance'), path: '/employees?view=performance' },
       ],
@@ -294,7 +293,6 @@ function App() {
           <Routes>
             <Route path="/" element={<Navigate to={defaultRoute} replace />} />
             <Route path="/login" element={<Navigate to={defaultRoute} replace />} />
-            <Route path="/register" element={<Navigate to={defaultRoute} replace />} />
             <Route
               path="/employees"
               element={

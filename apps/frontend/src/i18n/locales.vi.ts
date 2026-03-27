@@ -38,6 +38,7 @@ export const vi = {
   common: {
     loading: 'Đang tải dữ liệu...',
     loadError: 'Không tải được dữ liệu. Hãy kiểm tra backend và quyền truy cập.',
+    close: 'Đóng',
   },
   nav: {
     employees: 'Nhân sự',
@@ -53,6 +54,8 @@ export const vi = {
     },
     employees: {
       profile: 'Hồ sơ nhân viên',
+      departments: 'Phòng ban',
+      teams: 'Nhóm',
       organization: 'Cơ cấu phòng ban',
       contract: 'Hợp đồng lao động',
       performance: 'Đánh giá hiệu suất',
@@ -86,10 +89,14 @@ export const vi = {
       description: 'Quản lý danh mục phòng ban và nhóm để chuẩn hóa dữ liệu tổ chức.',
       departments: 'Danh sách phòng ban',
       teams: 'Danh sách nhóm',
+      department: 'Phòng ban',
+      team: 'Nhóm',
       departmentPlaceholder: 'Nhập phòng ban mới',
       teamPlaceholder: 'Nhập nhóm mới',
+      unassigned: 'Chưa phân bổ',
       addDepartment: 'Thêm phòng ban',
       addTeam: 'Thêm nhóm',
+      members: '{{count}} nhân sự',
       addedDepartment: 'Đã thêm phòng ban mới.',
       addedTeam: 'Đã thêm nhóm mới.',
       duplicateDepartment: 'Phòng ban đã tồn tại.',
@@ -118,6 +125,7 @@ export const vi = {
     create: {
       title: 'Thêm nhân viên mới',
       openModal: 'Thêm nhân viên',
+      open: 'Thêm nhân viên',
       cancel: 'Đóng',
       selectPlaceholder: 'Chọn',
       sections: {
@@ -183,6 +191,7 @@ export const vi = {
     prevPage: 'Trang trước',
     nextPage: 'Trang sau',
     pageLabel: 'Trang {{current}} / {{total}}',
+    pageSizeLabel: 'Số lượng/trang',
     nextActions: 'Các bước tiếp theo',
     action1: 'Tạo bảng danh sách nhân viên với tìm kiếm và phân trang.',
     action2: 'Thêm form tạo/sửa hồ sơ nhân viên có validate.',

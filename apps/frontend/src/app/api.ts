@@ -51,13 +51,6 @@ export async function login(email: string, password: string) {
   });
 }
 
-export async function register(fullName: string, email: string, password: string) {
-  return publicRequest<{ user: Actor; message: string }>('/auth/register', {
-    method: 'POST',
-    body: JSON.stringify({ fullName, email, password }),
-  });
-}
-
 export interface EmployeeItem {
   id: string;
   fullName: string;

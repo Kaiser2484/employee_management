@@ -1,13 +1,11 @@
 import { FormEvent, useState } from 'react';
 import { useTranslation } from 'react-i18next';
-import { Link, useNavigate } from 'react-router-dom';
 import { login } from '../../app/api';
 import { useActor } from '../../app/actor-context';
 import { NotificationToast } from '../../components/NotificationToast';
 
 export function LoginPage() {
   const { t } = useTranslation();
-  const navigate = useNavigate();
   const { setActor } = useActor();
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
@@ -29,7 +27,7 @@ export function LoginPage() {
       const result = await login(email, password);
 
       setActor(result.user);
-      navigate('/', { replace: true });
+      window.location.href = '/';
     } catch {
       showToast(t('auth.loginFailed'), 'error');
     } finally {
@@ -89,13 +87,6 @@ export function LoginPage() {
               {isSubmitting ? t('common.loading') : t('auth.loginButton')}
             </button>
           </form>
-
-          <div className="auth-switch-row">
-            <span>{t('auth.noAccount')}</span>
-            <Link to="/register" className="auth-switch-btn">
-              {t('auth.registerButton')}
-            </Link>
-          </div>
         </div>
       </section>
     </div>
