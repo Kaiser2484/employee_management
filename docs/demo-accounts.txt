@@ -1,0 +1,8 @@
+Demo accounts for local testing
+Shared password: Password123!
+
+admin@hrm.local
+hr@hrm.local
+manager.sales@hrm.local
+lead.sales.a@hrm.local
+employee.sales.a1@hrm.local
