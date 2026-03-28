@@ -1,0 +1,12 @@
+<svg width="196" height="48" viewBox="0 0 196 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <rect width="48" height="48" rx="12" fill="url(#paint0_linear_1_1)"/>
+  <path d="M13 34V14H17V24.5L27 14H32L22.5 23.7L32.6 34H27.2L19 25.5L17 27.5V34H13Z" fill="white"/>
+  <text x="60" y="21" fill="#0F172A" font-family="Inter, Arial, sans-serif" font-size="15" font-weight="700">KTPM HRM</text>
+  <text x="60" y="37" fill="#475569" font-family="Inter, Arial, sans-serif" font-size="11" font-weight="500">Employee Management</text>
+  <defs>
+    <linearGradient id="paint0_linear_1_1" x1="4" y1="4" x2="46" y2="44" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#2563EB"/>
+      <stop offset="1" stop-color="#0EA5E9"/>
+    </linearGradient>
+  </defs>
+</svg>

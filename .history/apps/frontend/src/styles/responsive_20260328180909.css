@@ -1,0 +1,185 @@
+@media (min-width: 768px) {
+  .employees-toolbar {
+    grid-template-columns: 1.6fr 1fr;
+  }
+
+  .employee-create-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 767px) {
+  body {
+    height: auto;
+    overflow: auto;
+  }
+
+  #root {
+    height: auto;
+    min-height: 100vh;
+    overflow: visible;
+  }
+
+  .app-shell,
+  .app-shell.sidebar-collapsed,
+  .app-shell.sidebar-expanded {
+    grid-template-columns: 1fr;
+    height: auto;
+    min-height: 100vh;
+    overflow: visible;
+  }
+
+  .sidebar {
+    position: static;
+    height: auto;
+    border-right: 0;
+    border-bottom: 1px solid var(--line);
+    gap: 0.7rem;
+    padding: 1rem;
+    backdrop-filter: none;
+    z-index: 1;
+  }
+
+  .sidebar-top {
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+  }
+
+  .sidebar-toggle {
+    width: auto;
+  }
+
+  .sidebar-nav {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(130px, 1fr));
+  }
+
+  .sidebar-actions {
+    margin-top: 0;
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(130px, 1fr));
+  }
+
+  .sidebar-collapsed .brand-text,
+  .sidebar-collapsed .sidebar-text {
+    display: inline-block;
+    opacity: 1;
+  }
+
+  .sidebar-collapsed .sidebar-toggle,
+  .sidebar-collapsed .sidebar-nav a,
+  .sidebar-collapsed .icon-btn {
+    justify-content: flex-start;
+  }
+
+  .layout {
+    height: auto;
+    min-height: 0;
+    overflow: visible;
+    padding: 1rem 0.8rem 1.4rem;
+  }
+
+  .content {
+    overflow: visible;
+  }
+
+  .login-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .login-brand-pane {
+    border-right: 0;
+    border-bottom: 1px solid var(--line);
+  }
+
+  .header {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .submodule-menu {
+    top: 0;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.55rem;
+  }
+
+  .submodule-menu-list {
+    width: 100%;
+  }
+
+  .admin-submenu-groups {
+    width: 100%;
+    flex-wrap: wrap;
+  }
+
+  .admin-submenu-dropdown {
+    position: static;
+    margin-top: 0.45rem;
+    width: 100%;
+    min-width: 0;
+  }
+
+  .admin-catalog-form {
+    grid-template-columns: 1fr;
+  }
+
+  .employee-catalog-form {
+    grid-template-columns: 1fr;
+  }
+
+  .employee-modal {
+    width: 100%;
+    max-height: calc(100vh - 1rem);
+    padding: 0.85rem;
+  }
+
+  .employee-modal-head {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .admin-matrix-head {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .notification-toast,
+  .admin-toast {
+    top: 72px;
+    right: 10px;
+    left: 10px;
+    max-width: none;
+  }
+
+  .main-card {
+    min-height: auto;
+  }
+
+  .header-actions {
+    width: 100%;
+    justify-content: flex-start;
+  }
+
+  .login-form-pane {
+    padding: 2rem 1.2rem;
+  }
+
+  .login-brand-pane {
+    padding: 2rem 1.2rem;
+  }
+
+  .login-brand-pane h1 {
+    font-size: 1.7rem;
+  }
+
+  .login-brand-logo {
+    width: 150px;
+    margin-bottom: 1rem;
+  }
+
+  .pagination-row {
+    justify-content: space-between;
+  }
+}

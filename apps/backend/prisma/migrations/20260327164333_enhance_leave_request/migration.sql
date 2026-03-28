@@ -1,0 +1,3 @@
+-- AlterTable
+ALTER TABLE "LeaveRequest" ADD COLUMN     "createdAt" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
+ADD COLUMN     "leaveType" TEXT NOT NULL DEFAULT 'annual';

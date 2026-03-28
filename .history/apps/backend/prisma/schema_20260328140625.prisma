@@ -1,0 +1,114 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+enum Role {
+  admin
+  hr
+  manager
+  team_lead
+  employee
+}
+
+enum LeaveStatus {
+  pending
+  approved
+  rejected
+}
+
+enum TaskStatus {
+  todo
+  in_progress
+  blocked
+  done
+}
+
+enum TaskPriority {
+  low
+  medium
+  high
+  urgent
+}
+
+model Department {
+  id    String @id
+  name  String
+  teams Team[]
+  users User[]
+}
+
+model Team {
+  id           String @id
+  name         String
+  departmentId String
+  department   Department @relation(fields: [departmentId], references: [id])
+  users        User[]
+}
+
+model User {
+  id           String   @id
+  fullName     String
+  degree       String   @default("")
+  email        String?  @unique
+  passwordHash String?
+  role         Role
+  departmentId String?
+  teamId       String?
+  gender         String?
+  dateOfBirth    DateTime?
+  startDate      DateTime?
+  nationalId     String?
+  address        String?
+  employeeStatus String?
+  jobCategory    String?
+  jobTitle       String?
+  photoUrl       String?
+  department   Department? @relation(fields: [departmentId], references: [id])
+  team         Team?       @relation(fields: [teamId], references: [id])
+  leaveRequests  LeaveRequest[]
+  taskAssignments TaskAssignee[]
+  tasksCreated   Task[] @relation("CreatorTasks")
+}
+
+model Task {
+  id           String       @id
+  title        String
+  description  String?
+  status       TaskStatus   @default(todo)
+  priority     TaskPriority @default(medium)
+  dueDate      DateTime?
+  createdById  String
+  createdAt    DateTime     @default(now())
+  updatedAt    DateTime     @updatedAt
+  assignees    TaskAssignee[]
+  createdBy    User         @relation("CreatorTasks", fields: [createdById], references: [id])
+}
+
+model TaskAssignee {
+  taskId      String
+  assigneeId  String
+  assignedAt  DateTime @default(now())
+  task        Task     @relation(fields: [taskId], references: [id], onDelete: Cascade)
+  assignee    User     @relation(fields: [assigneeId], references: [id], onDelete: Cascade)
+
+  @@id([taskId, assigneeId])
+}
+
+model LeaveRequest {
+  id         String      @id
+  employeeId String
+  leaveType  String      @default("annual")
+  fromDate   DateTime
+  toDate     DateTime
+  status     LeaveStatus @default(pending)
+  reason     String?
+  attachment String?
+  createdAt  DateTime    @default(now())
+  employee   User        @relation(fields: [employeeId], references: [id])
+}
+
